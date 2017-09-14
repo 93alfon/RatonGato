@@ -1,0 +1,49 @@
+{% extends "server/base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+
+{% endblock extra_css %}
+
+{% block extra_js %}
+
+<script type="text/javascript">
+
+	var myRefresh;
+		function comprueba() {
+				$.ajax({
+				url: '/server/wait_player/',
+				success: function (data) {
+					if(data == "True"){
+						clearInterval(myRefresh);
+						location.href="/server/status_board";
+					}
+					myRefresh = setTimeout(comprueba, 2000);
+			}
+		})
+	}
+</script>
+
+{% endblock extra_js %}
+
+{% block content %}
+	<script type="text/javascript">
+        comprueba();
+    </script>
+
+	<div class="container" id="mensaje" style="margin-top:2em">
+		<div class="alert alert-info">
+			<strong>Info!</strong> {{ mensaje }}
+		</div>
+	</div>
+
+
+	<div class="progress" style="margin:200px; margin-top:15px">
+		<div id="bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+		</div>
+	</div>
+
+{% endblock content %}

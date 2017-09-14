@@ -1,0 +1,20 @@
+{% extends "server/base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+
+{% endblock extra_css %}
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+{% block content %}
+
+	<h1>Counter</h1>
+	Counter session: <strong>{{ counterSes }}</strong><br />
+	Counter global: <strong>{{ counterGlobal }}</strong><br />
+
+{% endblock content %}

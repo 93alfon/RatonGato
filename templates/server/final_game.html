@@ -1,0 +1,19 @@
+{% load staticfiles %}
+
+{% if final_game %}
+	<div class="container" id="mensaje">
+		{% if winner  %}
+			<div class="alert alert-success">
+				<a href="/server/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p><strong>{{ exclamacion }}! </strong>{{ mensaje }}</p>
+			</div>
+		{% else %}
+			<div class="alert alert-danger alert-dismissable fade in">
+				<a href="/server/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p><strong>{{ exclamacion }}! </strong>{{ mensaje }}</p>
+			</div>
+		{% endif %}
+	</div>
+{% else %}
+continua
+{% endif %}

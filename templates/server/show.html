@@ -1,0 +1,54 @@
+{% extends "server/base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+    
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+  
+{% endblock extra_css %}
+
+{% block extra_js %}
+
+
+<script type="text/javascript">
+
+	/* Variables Globales*/
+	var myRefresh;
+
+	function refresh() {
+		$.ajax({ url: '/server/show',
+			success: function (data) {
+				/*El resultado lo insertamos en contenido juego*/
+				$('#contenido_juego').html(data);
+				myRefresh = setTimeout(refresh, 1000);
+			}
+		})
+	}
+
+</script>
+
+
+{% endblock extra_js %}
+
+
+{% block content %}
+
+	<div id="contenido_juego" class="center-block" style="margin-top: 5em;">
+	</div>
+
+	{% if error %}
+		<div class="container" id="mensaje">
+			<div class="alert alert-danger alert-dismissable fade in">
+				<a href="/server/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p><strong>Error! </strong>{{ error }}</p>
+			</div>
+		</div>
+	{% else %}
+		<script type="text/javascript">
+			refresh();/*Llamamos a la funcion que se encarga de refrescar el tablero*/
+		</script>
+	{% endif %}
+
+
+{% endblock content %}

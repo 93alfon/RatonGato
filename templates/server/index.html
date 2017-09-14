@@ -1,0 +1,50 @@
+{% extends "server/base.html" %}
+{% load staticfiles %}
+
+
+{% block extra_css %}
+    
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+  
+{% endblock extra_css %}
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+
+{% block content %}
+
+	{% if error %}
+		<div class="container" id="mensaje">
+			<div class="alert alert-danger alert-dismissable fade in">
+				<a href="/server/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p><strong>Error! </strong>{{ error }}</p>
+			</div>
+		</div>
+	{% endif %}
+	
+	<div class="center-block">
+
+		<img id="img_izq" class="efecto_3D" src="{% static "images/cat.png" %}" alt="Picture of cat" />
+		<img id="img_der" class="efecto_3D" src="{% static "images/mouse.png" %}" alt="Picture of Mouse" />
+		
+
+		<div id="formulario" style="margin-top:10em;">
+			{% if not user.is_authenticated %}
+				<input class="btn" type="button" value="Login" onClick="window.location = '/server/login_user';"> 
+				<input class="btn" type="button" value="Registro" onClick="window.location = '/server/register_user';">
+			{% else %}
+				{% if OnGame %}
+					<input class="btn" type="button" value="Continuar Jugando" onClick="window.location = '/server/status_board';">
+				{% else %}
+					<input class="btn" type="button" value="Nuevo Juego" onClick="window.location = '/server/join_game';">
+				{% endif %}
+				<input class="btn" type="button" value="Cerrar Sesion" onClick="window.location = '/server/logout_user';">
+			{% endif %}
+			<input class="btn" type="button" value="Show" onClick="window.location = '/server/show';">
+		</div>
+
+	</div>
+	
+	
+{% endblock content %}

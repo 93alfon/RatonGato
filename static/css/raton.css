@@ -1,0 +1,264 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-weight: lighter;
+	font-family: Helvetica;
+}
+
+body{
+	background-color: #f2f2f2;
+}
+
+#mensaje{
+	width: 30em;
+	margin-top: 2em;
+}
+
+#raton_gato_name{
+	padding-top: 5px;
+	font-size: 42px;
+	font-family: 'Bungee Inline', cursive;
+}
+
+#top{
+	background-color: #a4c639;
+	height: 5em;
+	width: 100%;
+	margin-top: -1.4em;
+}
+
+#title{
+	color: white;
+	font-family: Helvetica;
+	text-align: center;
+	font-weight: bold;
+}
+
+#header{
+	position: relative;
+	margin-left: 10%;
+}
+
+#navigator{
+	width: 100%;
+	height: 2em;
+	background-color: #333333;
+	margin-top: 0.5em;
+}
+
+#links_nav{
+	color:#7b7b7b;
+	margin-top: 7px;
+}
+
+#footer{
+	position: fixed;
+	width: 100%;
+	height: 2em;
+	bottom: 0;
+	background-color: #262626;
+}
+
+#footer p{
+	margin-top: 5px;
+	color:#7b7b7b;
+	margin-left: 35%;
+	font-size: 15px;
+}
+
+a{
+	color: #7b7b7b;
+	text-decoration:none;
+}
+
+table a {
+	color:#000;
+	display:block;
+	font-size:60px;
+	height:80px;
+	position:relative;
+	text-decoration:none;
+	text-shadow:0 1px #fff;
+	width:80px;
+}
+
+#login_form{
+	font-size: 20px;
+}
+
+#formulario{
+	width: 20em;
+	height: 15em;
+	margin:auto;
+}
+
+#user_form{
+	margin: auto;
+	margin-top: 5em;
+}
+
+
+#titulo_registro{
+	position: absolute;
+	text-align: center;
+	font-family: helvetica;
+	font-size: 20px;
+	margin-top: 40px;
+	margin-left: 45%;
+}
+
+input{
+	margin-top: 1.5em;
+	width: 20em;
+	height: 3em;
+	font-size: 0.67em;
+	outline: none;
+	border:0px;
+	background-color: #d9d9d9;
+	border-radius: 5px;
+	padding-left: 1em;
+}
+
+#type_player{
+	margin-top: 1.5em;
+	width: 20em;
+	height: 3em;
+	font-size: 0.67em;
+	outline: none;
+	border:0px;
+	background-color: #d9d9d9;
+	border-radius: 5px;
+	padding-left: 1em;
+}
+
+#chess_board {
+	box-shadow: 3px 3px 3px grey;
+	-webkit-box-shadow: 3px 3px 3px grey;
+	-moz-box-shadow: 3px 3px 3px grey;
+}
+
+#chess_board td {
+	background:#fff;
+	background:-moz-linear-gradient( top,#fff,#eee);
+	background:-webkit-gradient(linear,0 0,0 100%,from(#fff), to(#eee));
+	box-shadow:inset 0 0 0 1px #fff;
+	-moz-box-shadow:inset 0 0 0 1px #fff;
+	-webkit-box-shadow: inset 0 0 0 1px #fff;
+	height: 60px;
+	text-align: center;
+	vertical-align:middle;
+	width:60px;
+}
+
+#chess_board tr:nth-child(odd) td:nth-child(even),
+#chess_board tr:nth-child(even) td:nth-child(odd) {
+	background:#ccc;
+	background:-moz-linear-gradient(top,#ccc,#eee);
+	background:-webkit-gradient(linear,0 0, 0 100%, from(#ccc), to(#eee));
+	box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+	-moz-box-shadow:inset 0 0 10px rgba( 0 , 0 ,0 ,.4);
+	-webkit-box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+}
+
+
+.btn {
+	-webkit-border-radius: 5;
+	-moz-border-radius: 5;
+	outline: none;
+	border-radius: 5px;
+	text-shadow: 2px 1px 3px #666666;
+	font-family: Courier New;
+	color: #ffffff;
+	font-size: 13.5px;
+	background: #a4c639;
+	text-decoration: none;
+	padding-left: 0;
+}
+
+#img_der{
+	position: absolute;
+	margin-top: 15%;
+	right: 0px;
+
+}
+
+#img_izq{
+	position: absolute;
+	margin-top: 15%;
+	left:0px;
+}
+
+#board{
+	width: 480px;
+	height: 480px;
+	margin: auto;
+	margin-top: -.5em;
+}
+
+.token{
+	height: 50px;
+	width: 50px;
+}
+
+#mensaje{
+	width: 37em;
+	margin-top: 2em;
+}
+
+.center-block {
+	.center-block();
+}
+
+.flex-container {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
+	min-width: 1000px;
+	min-height: 378px;
+}
+
+#img_izq:hover{
+	width: 300px;
+	height: auto;
+}
+
+#img_der:hover{
+	width: 270px;
+	height: auto;
+}
+
+
+.efecto_3D{
+	-webkit-transition: width .5s;
+	-moz-transition: width .5s;
+}
+
+#img_izq{
+	margin-top: 9em;
+	width: 250px;
+	margin-left: 2em;
+	-webkit-transform: rotate(-10deg);
+	-moz-transform: rotate(-10deg);
+}
+
+#img_der{
+	margin-top: 9em;
+	width: 220px;
+	margin-right: 3em;
+	-webkit-transform: rotate(+10deg);
+	-moz-transform: rotate(+10deg);
+}
+
+#move_mes{
+	position: absolute;
+	/*background-color: red;*/
+	min-width: 20em!important;
+	min-height: 10em;
+	margin-left: 1em;
+	margin-top: 7em;
+}
+
+#tam{
+	position: absolute;
+	min-width: 20em!important;
+}

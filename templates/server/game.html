@@ -1,0 +1,110 @@
+{% extends "server/base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+    
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+  
+{% endblock extra_css %}
+
+{% block extra_js %}
+
+
+<script type="text/javascript">
+
+	/* Variables Globales*/
+	var myRefresh;
+	var lastUsed = -1;
+	var raton = false;
+	var flag_no_turn = true;
+
+	function refresh() {
+		$.ajax({ url: '/server/status_board',
+			success: function (data) {
+				/*El resultado lo insertamos en board*/
+				$('#contenido_juego').html(data);
+			}
+		})
+	}
+
+	function winner_or_looser(){
+		var end_of_game = false;
+
+		$.ajax({ url: '/server/winner_or_looser',
+			success: function (data) {
+
+				/*Si el juego ha acabado*/
+				if(data.search("continua") == -1){
+					$('#mensaje').html(data); /*Mensaje con la resolucion del juego (GANA - PIERDE)*/
+					clearTimeout(myRefresh);
+					end_of_game = true;
+
+					if(data.search("Enhorabuena") != -1){
+						$('window').ready(function(){
+							$('body').css('background-color', '#5ec639');
+						});/*Fondo Verde si ganas*/
+					}else{
+						$('window').ready(function(){
+							$('body').css('background-color', '#dc1b41');
+						});/*Fondo Rojo si pierdes*/
+					}
+				}
+				
+			}
+		})
+
+		return end_of_game;
+	}
+
+	function getID(oObject){
+		/* Paramos de refrescar para hacer el movimiento*/
+		clearTimeout(myRefresh);
+		var id = oObject.id;
+		id = id.substr(3);
+		
+		/*Si el jugador es raton no hace falta clickar para saber el orgien*/
+		if(raton == true)
+			lastUsed = 0;
+
+		/*Si no hay un anterior lo guardamos para usarlo posteriormente como origen*/
+		if(lastUsed == -1){
+			lastUsed = id;
+		}
+		else{
+			$.ajax({
+				type: "POST",
+				url: "/server/move/",
+				data: {
+				'origin':lastUsed,
+				'target':id,
+				'csrfmiddlewaretoken': '{{ csrf_token }}',//security token
+				},
+				success: function (data) {
+					$('#move_mes').html(data);
+				}
+			})
+			lastUsed = -1; /*Una vez hecho el movimineto, ponemos el ultimo a -1, para futuros movimientos*/
+			flag_no_turn = true;
+			
+			myRefresh = setTimeout(refresh, 2000);
+		}
+		
+	}
+
+</script>
+
+
+{% endblock extra_js %}
+
+
+{% block content %}
+
+	<script type="text/javascript">
+		refresh();/*Llamamos a la funcion que se encarga de refrescar el tablero y el turno*/
+	</script>
+
+	<div id="contenido_juego" class="center-block">
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,62 @@
+{% extends "server/base.html" %}
+{% load staticfiles %}
+
+
+{% block extra_css %}
+    
+<link rel="stylesheet" type="text/css" href="{% static "css/raton.css" %}"/>
+  
+{% endblock extra_css %}
+
+{% block extra_js %}
+{% endblock extra_js %}
+
+
+{% block content %}
+
+	
+	<div class="container" id="mensaje">
+
+		{% if registered %}
+			<div class="alert alert-success">
+				<a href="/server/login_user" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p>Gracias por registrarte, ya puedes iniciar sesion y jugar.</p>
+			</div>
+		{% endif %}
+
+		{% if error %}
+			<div class="alert alert-danger alert-dismissable fade in">
+				<a href="/server/login_user" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<p><strong>Error! </strong>{{ error }}</p>
+			</div>
+		{% endif %}
+
+		{% if info %}
+			<div class="alert alert-info">
+				<a href="/server/login_user" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Info!</strong> {{ info }}
+			</div>
+		{% endif %}
+
+    </div>
+
+	<div id="formulario" style="{{ margin }}">
+		<form id="login_form" method="post" action="/server/login_user/">
+			{% csrf_token %}
+			<input type="text" name="username" value="" placeholder="Username" />
+			<br />
+			<input type="password" name="password" value="" placeholder="Password" />
+			<br />
+			<select name="type_player" id="type_player">
+				<option value="cat">Gato</option> 
+				<option value="mouse">Ratón</option> 
+			</select>
+			<br/>
+
+			<input class="btn" type="submit" value="Login" />
+		</form>
+
+   </div>
+
+
+{% endblock content %}
